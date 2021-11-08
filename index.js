@@ -51,8 +51,10 @@ exports.getMenu = (req, res) => {
 function parseMealsOfOneDay(oneDayDom) {
 	var mealsOfOneDay = {};
 	oneDayDom.querySelectorAll('.menue').forEach(function (elm, i) {
-		var food = elm.querySelector('.panel-body') && elm.querySelector('.panel-body').textContent
+		var food = elm.querySelector('.panel-body') && elm.querySelector('.panel-body').textContent.trim()
 			.replace(/(((EI|FI|GL|LA|SD|SL|SO|S|1|3|5|8|9)(,|$))*)/gm, '')
+			.replace(/\n+/gm, ', ')
+			.replace(/, +,/gm, '')
 			.trim();
 		var type = elm.querySelector('.panel-heading') && elm.querySelector('.panel-heading').textContent.trim();
 		if ((food.length > 0) && (type.length > 0)) {
