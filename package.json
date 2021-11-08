@@ -1,0 +1,9 @@
+{
+	"scripts": {
+		"start": "npx functions-framework --target=getMenu"
+	},
+	
+	"dependencies": {
+		"jsdom": "^18.0.1"
+	  }
+}
