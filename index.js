@@ -74,12 +74,16 @@ function formatMealsInXml(meals) {
 		xml += '<day date="' + date + '">';
 
 		var mealsOfOneDay = meals[date];
-		Object.keys(mealsOfOneDay).forEach(function(type, i) {
-			xml += '<category name="' + type + '">';
-			xml += '<meal><name>' + mealsOfOneDay[type] + '</name></meal>';
-			xml += '</category>';
-		});
-		
+		var mealTypesOfOneDay = Object.keys(mealsOfOneDay);
+		if (mealTypesOfOneDay.length > 0) {
+			mealTypesOfOneDay.forEach(function(type, i) {
+				xml += '<category name="' + type + '">';
+				xml += '<meal><name>' + mealsOfOneDay[type] + '</name></meal>';
+				xml += '</category>';
+			});
+		} else {
+			xml += '<closed/>'
+		}
 		xml += '</day>';
 	});
 	
